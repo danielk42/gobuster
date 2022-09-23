@@ -1,5 +1,5 @@
 TARGET=./build
-ARCHS=amd64 386
+ARCHS=amd64 386 arm64
 LDFLAGS="-s -w"
 
 .PHONY: current
@@ -38,7 +38,7 @@ linux:
 
 .PHONY: darwin
 darwin:
-	@for GOARCH in ${ARCHS}; do \
+	@for GOARCH in ${APPLEARCHS}; do \
 		echo "Building for darwin $${GOARCH} ..." ; \
 		mkdir -p ${TARGET}/gobuster-darwin-$${GOARCH} ; \
 		GOOS=darwin GOARCH=$${GOARCH} GO111MODULE=on CGO_ENABLED=0 go build -ldflags=${LDFLAGS} -trimpath -o ${TARGET}/gobuster-darwin-$${GOARCH}/gobuster ; \
